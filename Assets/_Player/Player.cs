@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 
     private float moveSpeed = 0.05f;
 
+    public GameObject Bomb;
+    
     void Start()
     {
         thisController = GetComponent<CharacterController>();
@@ -54,4 +56,19 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, transform.position.z);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bad")
+        {
+            var Empty = Instantiate(Bomb, transform.position, Quaternion.identity);
+            Destroy(Empty, 1);
+            GameManager.Lives -= 1;
+            HUD.HUDManager.UpdateLives();
+
+            if (GameManager.Lives <= 0)
+            {
+                HUD.HUDManager.GameOver();
+            }
+        }
+    }
 }

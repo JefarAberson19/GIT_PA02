@@ -31,7 +31,7 @@ public class HUD : MonoBehaviour
         Time.timeScale = 0;
         GameManager.CurrentState = GameManager.GameState.GameOver;
         Txt_Message.color = Color.red;
-        Txt_Message.text = "GAME OVER! \n PRESS ENTER TO RESTART GAME.";
+        Txt_Message.text = "GAME OVER! PRESS ENTER TO RESTART GAME.";
     }
 
     public void DismissMessage()
